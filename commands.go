@@ -22,3 +22,17 @@ func (c *commands) run(s *state, cmd command) error {
 	}
 	return f(s, cmd)
 }
+
+func (c *commands) reset() {
+	c.registeredCommands = make(map[string]func(*state, command) error)
+}
+
+func (c *commands) users() []string {
+	keys := make([]string, 0, len(c.registeredCommands))
+	for k := range c.registeredCommands {
+		keys = append(keys, k)
+	}
+	return keys
+}
+
+
