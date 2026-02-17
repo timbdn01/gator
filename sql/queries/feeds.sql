@@ -14,3 +14,8 @@ RETURNING *;
 SELECT id, created_at, updated_at, name, url, user_id
 FROM feeds
 ORDER BY created_at DESC;
+
+-- name: GetFeedByURL :one
+SELECT id, created_at, updated_at, name, url, user_id
+FROM feeds
+WHERE url = $1;
